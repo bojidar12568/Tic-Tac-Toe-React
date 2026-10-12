@@ -1,20 +1,10 @@
 
 
-const idishanalGameBoard = [
-    [null,null,null],
-    [null,null,null],
-    [null,null,null]
-]
 
-export default function GameBoard ({isSelected, turns}) {
+
+export default function GameBoard ({isSelected, board}) {
    
-   let gameBoard = idishanalGameBoard
-
-   for (const turn of turns) {
-   const {square, player} = turn
-   const {row, col} = square
-   gameBoard[row][col] = player
-   }
+   
 
 
 
@@ -31,9 +21,9 @@ export default function GameBoard ({isSelected, turns}) {
 //     }
 
   return( <ol id="game-board">
-        {gameBoard.map((row, rowIndex) => <li key={rowIndex}>
+        {board.map((row, rowIndex) => <li key={rowIndex}>
             <ol>
-                {row.map((playerSymbol, colIndex) => <li key = {colIndex}> <button onClick={() => isSelected(rowIndex,colIndex)}>{playerSymbol}</button></li>)}
+                {row.map((playerSymbol, colIndex) => <li key = {colIndex}> <button onClick={() => isSelected(rowIndex,colIndex)} disabled= {playerSymbol !== null}>{playerSymbol}</button></li>)}
             </ol>
             </li>)}
     </ol>
